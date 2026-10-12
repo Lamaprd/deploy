@@ -342,7 +342,7 @@ function Headshot({
         />
       ) : (
         <div
-          className="flex h-full w-full items-center justify-center text-muted opacity-50"
+          className="flex h-full w-full items-center justify-center text-[#595959] opacity-50"
           aria-label={`${alt} — headshot pending`}
           role="img"
         >
@@ -381,6 +381,7 @@ export default function Home() {
     <>
       <style jsx global>{`
         html {
+          overflow-x: clip;
           scroll-behavior: smooth;
           scroll-padding-top: 6rem;
         }
@@ -397,6 +398,9 @@ export default function Home() {
         ::selection {
           background: #dbeafe;
           color: #111827;
+        }
+        body {
+          overflow-wrap: break-word;
         }
         .regulatory-ticker-track {
           scrollbar-width: thin;
@@ -422,7 +426,7 @@ export default function Home() {
             : "bg-transparent"
         }`}
       >
-        <nav className="mx-auto max-w-[1400px] px-6 lg:px-10">
+        <nav className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
           <div className="flex h-16 items-center justify-between lg:h-[72px]">
             <Link href="/" className="text-[15px] font-semibold tracking-tight text-foreground">
               {BRAND.name.toUpperCase()}
@@ -433,7 +437,7 @@ export default function Home() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="rounded-sm py-2 text-[13px] font-medium text-secondary transition-colors duration-200 hover:text-foreground focus-visible:outline-offset-4"
+                  className="rounded-sm py-2 text-[14px] font-medium text-[#4B5563] transition-colors duration-200 hover:text-foreground focus-visible:outline-offset-4"
                 >
                   {link.label}
                 </Link>
@@ -443,7 +447,7 @@ export default function Home() {
             <div className="flex items-center gap-4">
               <Link
                 href="#contact"
-                className="hidden rounded-md bg-foreground px-4 py-2 text-[13px] font-medium text-white transition-opacity hover:opacity-90 sm:inline-block"
+                className="hidden rounded-md bg-foreground px-4 py-2 text-[14px] font-medium text-white transition-opacity hover:opacity-90 sm:inline-block"
               >
                 Book an Assessment
               </Link>
@@ -494,7 +498,7 @@ export default function Home() {
                 <Link
                   href="#contact"
                   onClick={() => setMobileOpen(false)}
-                  className="inline-flex rounded-md bg-foreground px-5 py-3 text-sm font-medium text-white"
+                  className="inline-flex min-h-12 w-full items-center justify-center rounded-md bg-foreground px-5 py-3 text-sm font-medium text-white sm:w-auto"
                 >
                   Book an Assessment
                 </Link>
@@ -506,15 +510,15 @@ export default function Home() {
 
       <main id="main-content">
         {/* ═══════════════ HERO ═══════════════ */}
-        <section className="relative min-h-[100svh] overflow-hidden pt-24 lg:pt-32">
-          <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-            <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
+        <section className="relative overflow-hidden pt-24 pb-12 sm:min-h-[100svh] sm:pb-16 lg:pt-32">
+          <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
+            <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-8">
               <div className="lg:col-span-6 xl:col-span-5">
                 <motion.p
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  className="mb-6 font-mono text-[11px] font-medium tracking-[0.12em] text-muted uppercase"
+                  className="mb-4 max-w-[34rem] font-mono text-[11px] font-medium leading-relaxed tracking-[0.1em] text-[#595959] uppercase sm:mb-6 sm:text-[12px] sm:tracking-[0.12em]"
                 >
                   AI Governance · Regulatory Intelligence · Risk Advisory
                 </motion.p>
@@ -523,20 +527,20 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-[clamp(2.5rem,6vw,4rem)] font-semibold leading-[1.02] tracking-[-0.045em] text-foreground sm:text-5xl lg:text-[3.5rem] xl:text-[4rem]"
+                  className="max-w-[12ch] text-[clamp(2.25rem,10vw,3rem)] font-semibold leading-[1.04] tracking-[-0.045em] text-foreground sm:max-w-none sm:text-5xl lg:text-[3.5rem] xl:text-[4rem]"
                 >
                   AI governance
                   <br />
                   without the
                   <br />
-                  <span className="text-secondary">guesswork.</span>
+                  <span className="text-[#4B5563]">guesswork.</span>
                 </motion.h1>
 
                 <motion.p
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.25 }}
-                  className="mt-6 max-w-md text-[15px] leading-relaxed text-secondary sm:text-base"
+                  className="mt-5 max-w-md text-base leading-relaxed text-[#4B5563] sm:mt-6 sm:text-base"
                 >
                   Dansovia helps organizations identify, govern and manage the regulatory, legal
                   and operational risks of artificial intelligence.
@@ -546,18 +550,18 @@ export default function Home() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.35 }}
-                  className="mt-8 flex flex-wrap items-center gap-3"
+                  className="mt-7 flex flex-col items-stretch gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center"
                 >
                   <Link
                     href="#assessment"
-                    className="inline-flex items-center gap-2 rounded-md bg-foreground px-5 py-3 text-sm font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
+                    className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-foreground px-5 py-3 text-sm font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 sm:w-auto"
                   >
                     Assess Your AI Risk
                     <ArrowRight size={16} />
                   </Link>
                   <Link
                     href="#contact"
-                    className="inline-flex items-center gap-2 rounded-md border border-border bg-white px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-background"
+                    className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md border border-border bg-white px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-background sm:w-auto"
                   >
                     Speak With an Advisor
                   </Link>
@@ -567,7 +571,7 @@ export default function Home() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
-                  className="mt-8 font-mono text-[10.5px] tracking-wider text-muted uppercase"
+                  className="mt-6 font-mono text-[11px] leading-relaxed tracking-wider text-[#595959] uppercase sm:mt-8 sm:text-[12px]"
                 >
                   Los Angeles · Toronto · London
                 </motion.p>
@@ -579,20 +583,20 @@ export default function Home() {
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 0.3 }}
-                  className="relative mx-auto aspect-[4/3] min-h-[300px] max-w-xl overflow-hidden rounded-xl border border-border bg-white shadow-[0_8px_30px_-20px_rgba(17,17,17,0.22)] sm:min-h-[360px] lg:min-h-[420px] lg:max-w-none"
+                  className="relative mx-auto aspect-[4/3] min-h-[250px] max-w-xl overflow-hidden rounded-xl border border-border bg-white shadow-[0_8px_30px_-20px_rgba(17,17,17,0.22)] sm:min-h-[360px] lg:min-h-[420px] lg:max-w-none"
                 >
-                  <div className="flex items-center gap-2 border-b border-border px-4 py-3">
+                  <div className="flex items-center gap-1.5 border-b border-border px-3 py-3 sm:gap-2 sm:px-4">
                     <div className="flex gap-1.5">
                       <span className="h-2.5 w-2.5 rounded-full bg-[#E5E5E5]" />
                       <span className="h-2.5 w-2.5 rounded-full bg-[#E5E5E5]" />
                       <span className="h-2.5 w-2.5 rounded-full bg-[#E5E5E5]" />
                     </div>
-                    <span className="ml-3 font-mono text-[10px] tracking-wide text-muted">
+                    <span className="ml-1 min-w-0 truncate font-mono text-[10px] tracking-wide text-[#595959] sm:ml-3 sm:text-[12px]">
                       DANSOVIA · REGULATORY INTELLIGENCE
                     </span>
                   </div>
 
-                  <div className="relative h-[calc(100%-44px)] p-6">
+                  <div className="relative h-[calc(100%-44px)] p-3 sm:p-6">
                     <div
                       className="absolute inset-0 opacity-[0.03]"
                       style={{
@@ -602,7 +606,7 @@ export default function Home() {
                       }}
                     />
 
-                    <svg className="absolute inset-0 h-full w-full" aria-hidden>
+                    <svg className="absolute inset-0 hidden h-full w-full sm:block" aria-hidden>
                       <motion.line
                         x1="22%" y1="28%" x2="52%" y2="18%"
                         stroke="#E5E5E5" strokeWidth="1"
@@ -633,10 +637,18 @@ export default function Home() {
                       />
                     </svg>
 
+                    <div className="absolute left-3 right-3 top-4 flex flex-wrap gap-2 sm:hidden">
+                      {["EU AI ACT", "GPAI", "GOVERNANCE", "VENDOR RISK"].map((label) => (
+                        <span key={label} className="rounded-md border border-border bg-white px-2.5 py-1.5 font-mono text-[10px] font-medium tracking-wide text-foreground shadow-sm">
+                          {label}
+                        </span>
+                      ))}
+                    </div>
+
                     {heroNodes.map((node) => (
                       <motion.div
                         key={node.label}
-                        className="absolute"
+                        className="absolute hidden sm:block"
                         style={{ left: `${node.x}%`, top: `${node.y}%` }}
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -647,7 +659,7 @@ export default function Home() {
                             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-40" />
                             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
                           </span>
-                          <span className="font-mono text-[10px] font-medium tracking-wide text-foreground">
+                          <span className="font-mono text-[12px] font-medium tracking-wide text-foreground">
                             {node.label}
                           </span>
                         </div>
@@ -658,15 +670,15 @@ export default function Home() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 1.4 }}
-                      className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-md border border-border bg-background/80 px-3 py-2 backdrop-blur-sm"
+                      className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 rounded-md border border-border bg-background/90 px-2 py-2 backdrop-blur-sm sm:bottom-4 sm:left-4 sm:right-4 sm:px-3"
                     >
                       <div className="flex items-center gap-3">
-                        <span className="font-mono text-[10px] text-muted">STATUS</span>
-                        <span className="font-mono text-[10px] font-medium text-foreground">MONITORING</span>
+                        <span className="font-mono text-[10px] text-[#595959] sm:text-[12px]">STATUS</span>
+                        <span className="font-mono text-[10px] font-medium text-foreground sm:text-[12px]">MONITORING</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                        <span className="font-mono text-[10px] text-muted">
+                        <span className="font-mono text-[10px] text-[#595959] sm:text-[12px]">
                           {jurisdictions.length} JURISDICTIONS
                         </span>
                       </div>
@@ -692,22 +704,22 @@ export default function Home() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="flex min-w-[290px] snap-start items-center gap-4 border-r border-border px-5 py-4 last:border-r-0 sm:min-w-[320px] lg:min-w-0 lg:flex-1 lg:px-6 lg:py-3"
+                  className="flex min-w-[min(86vw,290px)] snap-start items-center gap-3 border-r border-border px-4 py-4 last:border-r-0 sm:min-w-[320px] sm:px-5 lg:min-w-0 lg:flex-1 lg:px-6 lg:py-3"
                 >
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
-                      <span className="font-mono text-[10px] font-semibold tracking-wider text-foreground">
+                      <span className="font-mono text-[12px] font-semibold tracking-wider text-foreground">
                         {item.region}
                       </span>
-                      <span className="hidden font-mono text-[10px] text-muted sm:inline">
+                      <span className="hidden font-mono text-[12px] text-[#595959] sm:inline">
                         {item.type}
                       </span>
                     </div>
-                    <p className="mt-1 line-clamp-2 text-[12px] leading-relaxed text-secondary lg:truncate">{item.detail}</p>
+                    <p className="mt-1 line-clamp-2 text-[13px] leading-relaxed text-[#4B5563] lg:truncate">{item.detail}</p>
                   </div>
                   <Link
                     href="#regulatory"
-                    className="hidden shrink-0 items-center gap-1 text-[11px] font-medium text-accent sm:inline-flex"
+                    className="hidden shrink-0 items-center gap-1 text-[12px] font-medium text-accent sm:inline-flex"
                   >
                     View
                     <ArrowRight size={12} />
@@ -723,7 +735,7 @@ export default function Home() {
 
         {/* ═══════════════ TRUST / POSITIONING ═══════════════ */}
         <section className="py-16 sm:py-20 lg:py-32" id="about">
-          <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+          <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
             <div className="mx-auto max-w-3xl text-center">
               <motion.h2
                 initial={{ opacity: 0, y: 16 }}
@@ -740,7 +752,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="mt-6 text-base leading-relaxed text-secondary sm:text-lg"
+                className="mt-6 text-base leading-relaxed text-[#4B5563] sm:text-lg"
               >
                 From the EU AI Act to California&apos;s transparency statutes, organizations are
                 increasingly required to understand how AI systems are developed, procured,
@@ -764,11 +776,11 @@ export default function Home() {
                 { label: "Engagements Delivered",   value: "80+" },
                 { label: "Founded",                 value: String(BRAND.founded) },
               ].map((stat) => (
-                <div key={stat.label} className="bg-white px-6 py-8 text-center">
+                <div key={stat.label} className="bg-white px-3 py-6 text-center sm:px-6 sm:py-8">
                   <p className="font-mono text-2xl font-semibold tracking-tight text-foreground">
                     {stat.value}
                   </p>
-                  <p className="mt-1 text-[12px] text-muted">{stat.label}</p>
+                  <p className="mt-1 text-[13px] text-[#595959]">{stat.label}</p>
                 </div>
               ))}
             </motion.div>
@@ -783,14 +795,14 @@ export default function Home() {
                 className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
               >
                 <div>
-                  <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-muted uppercase">
+                  <p className="font-mono text-[12px] font-medium tracking-[0.12em] text-[#595959] uppercase">
                     Leadership
                   </p>
                   <h3 className="mt-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
                     The people behind the practice.
                   </h3>
                 </div>
-                <p className="max-w-sm text-[13px] leading-relaxed text-muted">
+                <p className="max-w-sm text-[14px] leading-relaxed text-[#595959]">
                   Based in Los Angeles, with advisors in Toronto and London.
                 </p>
               </motion.div>
@@ -804,7 +816,7 @@ export default function Home() {
                 className="group mt-10 overflow-hidden rounded-lg border border-border bg-white transition-all duration-300 hover:border-foreground/20 hover:shadow-[0_1px_2px_rgba(17,17,17,0.04),0_16px_40px_-28px_rgba(17,17,17,0.28)]"
               >
                 <div className="grid gap-0 sm:grid-cols-12">
-                  <div className="flex items-center justify-center border-b border-border bg-background px-8 py-10 sm:col-span-3 sm:border-b-0 sm:border-r lg:py-14">
+                  <div className="flex items-center justify-center border-b border-border bg-background px-4 py-8 sm:col-span-3 sm:border-b-0 sm:border-r sm:px-8 sm:py-10 lg:py-14">
                     <Headshot
                       src={founder.photo}
                       alt={founder.name ?? "Founder"}
@@ -812,13 +824,13 @@ export default function Home() {
                     />
                   </div>
 
-                  <div className="px-8 py-10 sm:col-span-9 lg:px-10 lg:py-14">
+                  <div className="px-4 py-8 sm:col-span-9 sm:px-8 sm:py-10 lg:px-10 lg:py-14">
                     <div className="flex flex-wrap items-center gap-3">
-                      <span className="rounded-md border border-border bg-background px-2.5 py-1 font-mono text-[10px] font-medium tracking-wider text-foreground uppercase">
+                      <span className="rounded-md border border-border bg-background px-2.5 py-1 font-mono text-[12px] font-medium tracking-wider text-foreground uppercase">
                         {founder.role}
                       </span>
                       {founder.location && (
-                        <span className="font-mono text-[10px] tracking-wider text-muted uppercase">
+                        <span className="font-mono text-[12px] tracking-wider text-[#595959] uppercase">
                           {founder.location}
                         </span>
                       )}
@@ -836,7 +848,7 @@ export default function Home() {
                     )}
 
                     {founder.bio && (
-                      <p className="mt-4 max-w-2xl text-[14.5px] leading-relaxed text-secondary">
+                      <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[#4B5563]">
                         {founder.bio}
                       </p>
                     )}
@@ -845,7 +857,7 @@ export default function Home() {
                       {founder.focus.map((focus) => (
                         <li
                           key={focus}
-                          className="rounded-md border border-border bg-background px-3 py-1.5 font-mono text-[10.5px] tracking-wider text-secondary uppercase"
+                          className="rounded-md border border-border bg-background px-3 py-1.5 font-mono text-[12px] tracking-wider text-[#4B5563] uppercase"
                         >
                           {focus}
                         </li>
@@ -873,7 +885,7 @@ export default function Home() {
                         size="md"
                       />
                       {person.area && (
-                        <span className="font-mono text-[10px] tracking-wider text-muted uppercase">
+                        <span className="font-mono text-[12px] tracking-wider text-[#595959] uppercase">
                           {person.area}
                         </span>
                       )}
@@ -890,12 +902,12 @@ export default function Home() {
                       />
                     )}
 
-                    <p className="mt-1.5 font-mono text-[10px] tracking-wider text-muted uppercase">
+                    <p className="mt-1.5 font-mono text-[12px] tracking-wider text-[#595959] uppercase">
                       {person.role}
                     </p>
 
                     {person.bio && (
-                      <p className="mt-3 flex-1 text-[13.5px] leading-relaxed text-secondary">
+                      <p className="mt-3 flex-1 text-[14px] leading-relaxed text-[#4B5563]">
                         {person.bio}
                       </p>
                     )}
@@ -904,7 +916,7 @@ export default function Home() {
                       {person.focus.map((f) => (
                         <li
                           key={f}
-                          className="rounded-md border border-border bg-background px-2 py-1 font-mono text-[10px] tracking-wider text-secondary uppercase"
+                          className="rounded-md border border-border bg-background px-2 py-1 font-mono text-[12px] tracking-wider text-[#4B5563] uppercase"
                         >
                           {f}
                         </li>
@@ -919,7 +931,7 @@ export default function Home() {
 
         {/* ═══════════════ SERVICES ═══════════════ */}
         <section className="border-t border-border bg-white py-16 sm:py-20 lg:py-32" id="services">
-          <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+          <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
             <div className="max-w-2xl">
               <motion.h2
                 initial={{ opacity: 0, y: 16 }}
@@ -935,7 +947,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="mt-4 text-base text-secondary"
+                className="mt-4 text-base text-[#4B5563]"
               >
                 From EU AI Act readiness to generative AI copyright exposure, Dansovia helps
                 organizations turn complex regulatory requirements into practical governance.
@@ -953,18 +965,18 @@ export default function Home() {
                   className="group relative bg-white p-6 transition-colors duration-200 hover:bg-background sm:p-8"
                 >
                   <div className="flex items-start justify-between">
-                    <span className="font-mono text-[12px] font-medium tracking-wider text-muted">
+                    <span className="font-mono text-[13px] font-medium tracking-wider text-[#595959]">
                       {service.num}
                     </span>
                     <ArrowUpRight
                       size={18}
-                      className="text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground"
+                      className="text-[#595959] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground"
                     />
                   </div>
                   <h3 className="mt-6 text-lg font-semibold tracking-tight text-foreground">
                     {service.title}
                   </h3>
-                  <p className="mt-2 text-[14px] leading-relaxed text-secondary">
+                  <p className="mt-2 text-[14px] leading-relaxed text-[#4B5563]">
                     {service.description}
                   </p>
                   <Link
@@ -980,13 +992,13 @@ export default function Home() {
 
         {/* ═══════════════ METHODOLOGY ═══════════════ */}
         <section className="py-16 sm:py-20 lg:py-32">
-          <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+          <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
             <div className="max-w-2xl">
               <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="font-mono text-[11px] font-medium tracking-[0.12em] text-muted uppercase"
+                className="font-mono text-[12px] font-medium tracking-[0.12em] text-[#595959] uppercase"
               >
                 The Dansovia Approach
               </motion.p>
@@ -1016,14 +1028,14 @@ export default function Home() {
                       className="relative"
                     >
                       <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-border bg-white">
-                        <span className="font-mono text-[13px] font-semibold text-foreground">
+                        <span className="font-mono text-[14px] font-semibold text-foreground">
                           {stage.num}
                         </span>
                       </div>
                       <h3 className="mt-5 text-[15px] font-semibold tracking-tight text-foreground">
                         {stage.title}
                       </h3>
-                      <p className="mt-1.5 text-[13px] leading-relaxed text-secondary">
+                      <p className="mt-1.5 text-[14px] leading-relaxed text-[#4B5563]">
                         {stage.description}
                       </p>
                     </motion.div>
@@ -1047,11 +1059,11 @@ export default function Home() {
                     <div className="absolute bottom-0 left-[19px] top-10 w-px bg-border" />
                   )}
                   <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-white">
-                    <span className="font-mono text-[11px] font-semibold">{stage.num}</span>
+                    <span className="font-mono text-[12px] font-semibold">{stage.num}</span>
                   </div>
                   <div className="pt-1">
                     <h3 className="text-[15px] font-semibold text-foreground">{stage.title}</h3>
-                    <p className="mt-1 text-[13px] text-secondary">{stage.description}</p>
+                    <p className="mt-1 text-[14px] text-[#4B5563]">{stage.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -1061,7 +1073,7 @@ export default function Home() {
 
         {/* ═══════════════ AI RISK SCORECARD ═══════════════ */}
         <section className="border-t border-border bg-white py-16 sm:py-20 lg:py-32" id="assessment">
-          <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+          <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
               <div>
                 <motion.h2
@@ -1078,7 +1090,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="mt-4 text-base text-secondary"
+                  className="mt-4 text-base text-[#4B5563]"
                 >
                   Complete a preliminary assessment to identify potential areas of regulatory,
                   privacy, intellectual-property and governance exposure. Your results are
@@ -1099,7 +1111,7 @@ export default function Home() {
                     <ArrowRight size={16} />
                   </Link>
                 </motion.div>
-                <p className="mt-6 max-w-md text-[12px] leading-relaxed text-muted">
+                <p className="mt-6 max-w-md text-[13px] leading-relaxed text-[#595959]">
                   This preliminary assessment is informational only and does not constitute legal
                   advice, a legal opinion or a definitive regulatory classification.
                 </p>
@@ -1114,7 +1126,7 @@ export default function Home() {
               >
                 <div className="flex items-start justify-between">
                   <div>
-                    <p className="font-mono text-[11px] font-medium tracking-wider text-muted">
+                    <p className="font-mono text-[12px] font-medium tracking-wider text-[#595959]">
                       DANSOVIA AI RISK SCORE
                     </p>
                     <div className="mt-2 flex items-baseline gap-2">
@@ -1127,10 +1139,10 @@ export default function Home() {
                       >
                         72
                       </motion.span>
-                      <span className="text-lg text-muted">/ 100</span>
+                      <span className="text-lg text-[#595959]">/ 100</span>
                     </div>
                   </div>
-                  <span className="rounded-md border border-amber-200 bg-amber-50 px-2.5 py-1 font-mono text-[11px] font-medium text-amber-800">
+                  <span className="rounded-md border border-amber-200 bg-amber-50 px-2.5 py-1 font-mono text-[12px] font-medium text-amber-800">
                     HIGHER ATTENTION
                   </span>
                 </div>
@@ -1139,8 +1151,8 @@ export default function Home() {
                   {riskCategories.map((cat, i) => (
                     <div key={cat.name}>
                       <div className="mb-1.5 flex items-center justify-between">
-                        <span className="text-[13px] font-medium text-foreground">{cat.name}</span>
-                        <span className="font-mono text-[12px] text-muted">{cat.score}</span>
+                        <span className="text-[14px] font-medium text-foreground">{cat.name}</span>
+                        <span className="font-mono text-[13px] text-[#595959]">{cat.score}</span>
                       </div>
                       <div className="h-1.5 overflow-hidden rounded-full bg-border">
                         <motion.div
@@ -1161,7 +1173,7 @@ export default function Home() {
 
         {/* ═══════════════ REGULATORY DASHBOARD ═══════════════ */}
         <section className="py-16 sm:py-20 lg:py-32" id="regulatory">
-          <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+          <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
             <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
               <div className="max-w-xl">
                 <motion.h2
@@ -1189,7 +1201,7 @@ export default function Home() {
               </motion.div>
             </div>
 
-            <p className="mt-3 text-[12px] text-muted">
+            <p className="mt-3 text-[13px] text-[#595959]">
               Sample interface — data shown is illustrative, not live regulatory feeds.
             </p>
 
@@ -1203,21 +1215,21 @@ export default function Home() {
                   transition={{ duration: 0.5, delay: i * 0.08 }}
                   className="rounded-lg border border-border bg-white p-5 transition-shadow hover:shadow-sm"
                 >
-                  <p className="font-mono text-[10px] font-medium tracking-wider text-muted">
+                  <p className="font-mono text-[12px] font-medium tracking-wider text-[#595959]">
                     {j.region}
                   </p>
                   <h3 className="mt-1 text-[15px] font-semibold text-foreground">{j.title}</h3>
 
                   <div className="mt-4 space-y-3">
                     <div>
-                      <p className="font-mono text-[10px] text-muted">STATUS</p>
-                      <p className="mt-0.5 text-[13px] text-foreground">{j.status}</p>
+                      <p className="font-mono text-[12px] text-[#595959]">STATUS</p>
+                      <p className="mt-0.5 text-[14px] text-foreground">{j.status}</p>
                     </div>
                     <div>
-                      <p className="font-mono text-[10px] text-muted">FOCUS</p>
+                      <p className="font-mono text-[12px] text-[#595959]">FOCUS</p>
                       <ul className="mt-1 space-y-0.5">
                         {j.focus.map((f) => (
-                          <li key={f} className="text-[12px] text-secondary">
+                          <li key={f} className="text-[13px] text-[#4B5563]">
                             {f}
                           </li>
                         ))}
@@ -1226,7 +1238,7 @@ export default function Home() {
                   </div>
 
                   <div className="mt-4 border-t border-border pt-3">
-                    <p className="font-mono text-[10px] text-muted">
+                    <p className="font-mono text-[12px] text-[#595959]">
                       LAST UPDATED · {j.updated}
                     </p>
                   </div>
@@ -1238,7 +1250,7 @@ export default function Home() {
 
         {/* ═══════════════ ENGAGEMENT MODELS ═══════════════ */}
         <section className="border-t border-border bg-white py-16 sm:py-20 lg:py-32">
-          <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+          <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
             <motion.h2
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1262,7 +1274,7 @@ export default function Home() {
                   <h3 className="text-[16px] font-semibold tracking-tight text-foreground">
                     {model.title}
                   </h3>
-                  <p className="mt-3 flex-1 text-[14px] leading-relaxed text-secondary">
+                  <p className="mt-3 flex-1 text-[14px] leading-relaxed text-[#4B5563]">
                     {model.description}
                   </p>
                 </motion.div>
@@ -1288,12 +1300,12 @@ export default function Home() {
 
         {/* ═══════════════ CASE STUDIES ═══════════════ */}
         <section className="py-16 sm:py-20 lg:py-32">
-          <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+          <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="font-mono text-[11px] font-medium tracking-[0.12em] text-muted uppercase"
+              className="font-mono text-[12px] font-medium tracking-[0.12em] text-[#595959] uppercase"
             >
               Illustrative Case Studies
             </motion.p>
@@ -1306,7 +1318,7 @@ export default function Home() {
             >
               How organizations approach AI risk.
             </motion.h2>
-            <p className="mt-3 text-[12px] text-muted">
+            <p className="mt-3 text-[13px] text-[#595959]">
               Client names withheld. Examples are composite engagements drawn from our advisory practice.
             </p>
 
@@ -1320,7 +1332,7 @@ export default function Home() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="rounded-lg border border-border bg-white p-6 sm:p-8"
                 >
-                  <p className="font-mono text-[11px] font-medium tracking-wider text-muted">
+                  <p className="font-mono text-[12px] font-medium tracking-wider text-[#595959]">
                     {c.sector}
                   </p>
                   <h3 className="mt-2 text-xl font-semibold tracking-tight text-foreground">
@@ -1328,16 +1340,16 @@ export default function Home() {
                   </h3>
                   <div className="mt-6 grid gap-6 sm:grid-cols-3">
                     <div>
-                      <p className="text-[12px] font-semibold uppercase tracking-wide text-muted">Challenge</p>
-                      <p className="mt-1.5 text-[14px] leading-relaxed text-secondary">{c.challenge}</p>
+                      <p className="text-[13px] font-semibold uppercase tracking-wide text-[#595959]">Challenge</p>
+                      <p className="mt-1.5 text-[14px] leading-relaxed text-[#4B5563]">{c.challenge}</p>
                     </div>
                     <div>
-                      <p className="text-[12px] font-semibold uppercase tracking-wide text-muted">Approach</p>
-                      <p className="mt-1.5 text-[14px] leading-relaxed text-secondary">{c.approach}</p>
+                      <p className="text-[13px] font-semibold uppercase tracking-wide text-[#595959]">Approach</p>
+                      <p className="mt-1.5 text-[14px] leading-relaxed text-[#4B5563]">{c.approach}</p>
                     </div>
                     <div>
-                      <p className="text-[12px] font-semibold uppercase tracking-wide text-muted">Outcome</p>
-                      <p className="mt-1.5 text-[14px] leading-relaxed text-secondary">{c.outcome}</p>
+                      <p className="text-[13px] font-semibold uppercase tracking-wide text-[#595959]">Outcome</p>
+                      <p className="mt-1.5 text-[14px] leading-relaxed text-[#4B5563]">{c.outcome}</p>
                     </div>
                   </div>
                 </motion.article>
@@ -1348,7 +1360,7 @@ export default function Home() {
 
         {/* ═══════════════ INSIGHTS ═══════════════ */}
         <section className="border-t border-border bg-white py-16 sm:py-20 lg:py-32" id="insights">
-          <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+          <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
             <motion.h2
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1369,20 +1381,20 @@ export default function Home() {
                   transition={{ duration: 0.5, delay: i * 0.08 }}
                   className="group flex flex-col"
                 >
-                  <p className="font-mono text-[11px] font-medium tracking-wider text-muted">
+                  <p className="font-mono text-[12px] font-medium tracking-wider text-[#595959]">
                     {item.category}
                   </p>
                   <h3 className="mt-2 text-[15px] font-semibold leading-snug tracking-tight text-foreground transition-colors group-hover:text-accent">
                     {item.title}
                   </h3>
-                  <p className="mt-2 flex-1 text-[13px] leading-relaxed text-secondary">
+                  <p className="mt-2 flex-1 text-[14px] leading-relaxed text-[#4B5563]">
                     {item.description}
                   </p>
                   <div className="mt-4 flex items-center justify-between">
-                    <span className="font-mono text-[11px] text-muted">{item.date}</span>
+                    <span className="font-mono text-[12px] text-[#595959]">{item.date}</span>
                     <Link
                       href="#insights"
-                      className="inline-flex items-center gap-1 text-[12px] font-medium text-foreground opacity-0 transition-opacity group-hover:opacity-100"
+                      className="inline-flex items-center gap-1 text-[13px] font-medium text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
                     >
                       Read
                       <ArrowRight size={12} />
@@ -1396,8 +1408,8 @@ export default function Home() {
 
         {/* ═══════════════ CAREERS ═══════════════ */}
         <section className="bg-[#0D0D0D] py-16 sm:py-20 lg:py-32" id="careers">
-          <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-            <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
+          <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
+            <div className="grid gap-10 sm:gap-12 lg:grid-cols-12 lg:gap-10">
               <motion.div
                 initial={reduce ? false : { opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -1405,16 +1417,26 @@ export default function Home() {
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 className="lg:col-span-6"
               >
-                <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-white/40 uppercase">
+                <p className="font-mono text-[12px] font-medium tracking-[0.12em] text-white/70 uppercase">
                   Careers
                 </p>
                 <h2 className="mt-6 text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
                   Build the governance layer for the AI economy.
                 </h2>
-                <p className="mt-6 max-w-lg text-base leading-relaxed text-white/60">
+                <p className="mt-6 max-w-lg text-base leading-relaxed text-white/80">
                   Join a small, senior team working at the intersection of artificial intelligence,
                   regulation and technology. We hire from Los Angeles, Toronto and remote across
                   North America.
+                </p>
+                <p className="mt-5 text-[14px] leading-relaxed text-white/80">
+                  Interested in joining us? Apply at{" "}
+                  <a
+                    href={`mailto:${BRAND.emailCareers}?subject=${encodeURIComponent("Job application — Dansovia")}`}
+                    className="font-semibold text-white underline decoration-white/50 underline-offset-4 transition-colors hover:decoration-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                  >
+                    {BRAND.emailCareers}
+                  </a>
+                  .
                 </p>
               </motion.div>
 
@@ -1429,10 +1451,10 @@ export default function Home() {
                       transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
                     >
                       <div className="flex flex-col gap-2 py-6 sm:flex-row sm:items-baseline sm:gap-8">
-                        <span className="font-mono text-[10px] tracking-wider text-white/40 uppercase sm:w-40 sm:shrink-0">
+                        <span className="font-mono text-[12px] tracking-wider text-white/70 uppercase sm:w-40 sm:shrink-0">
                           {v.title}
                         </span>
-                        <span className="text-[14px] leading-relaxed text-white/70">
+                        <span className="text-[14px] leading-relaxed text-white/80">
                           {v.description}
                         </span>
                       </div>
@@ -1443,7 +1465,7 @@ export default function Home() {
             </div>
 
             {/* ── Vacancies ────────────────────────────────── */}
-            <div id="open-roles" className="mt-24 scroll-mt-24 lg:mt-32">
+            <div id="open-roles" className="mt-16 scroll-mt-24 sm:mt-20 lg:mt-32">
               <motion.div
                 initial={reduce ? false : { opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -1452,14 +1474,14 @@ export default function Home() {
                 className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
               >
                 <div>
-                  <p className="font-mono text-[11px] font-medium tracking-wider text-white/40 uppercase">
+                  <p className="font-mono text-[12px] font-medium tracking-wider text-white/70 uppercase">
                     Open Positions — {openRoles.length.toString().padStart(2, "0")}
                   </p>
                   <h3 className="mt-4 text-2xl font-semibold tracking-tight text-white sm:text-[1.75rem]">
                     Current opportunities.
                   </h3>
                 </div>
-                <p className="font-mono text-[11px] tracking-wider text-white/40 uppercase">
+                <p className="font-mono text-[12px] tracking-wider text-white/70 uppercase">
                   Updated {BRAND.careersUpdated}
                 </p>
               </motion.div>
@@ -1478,27 +1500,27 @@ export default function Home() {
                       href={`mailto:${BRAND.emailCareers}?subject=${encodeURIComponent(
                         `Application — ${role.title}`
                       )}`}
-                      className="group grid grid-cols-1 items-center gap-4 py-6 transition-colors hover:bg-white/[0.03] sm:grid-cols-12 sm:gap-6 sm:px-2 lg:py-7"
+                      className="group grid grid-cols-1 items-center gap-4 py-6 transition-colors hover:bg-white/[0.03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:grid-cols-12 sm:gap-6 sm:px-2 lg:py-7"
                     >
                       <div className="sm:col-span-5">
                         <h4 className="text-[15.5px] font-semibold tracking-tight text-white">
                           {role.title}
                         </h4>
-                        <p className="mt-1.5 font-mono text-[10px] tracking-wider text-white/40 uppercase">
+                        <p className="mt-1.5 font-mono text-[12px] tracking-wider text-white/70 uppercase">
                           {role.team}
                         </p>
                       </div>
 
                       <div className="flex flex-wrap items-center gap-x-5 gap-y-2 sm:col-span-6">
-                        <span className="inline-flex items-center gap-1.5 text-[12.5px] text-white/70">
-                          <MapPin size={12} className="text-white/40" aria-hidden />
+                        <span className="inline-flex items-center gap-1.5 text-[13px] text-white/80">
+                          <MapPin size={12} className="text-white/70" aria-hidden />
                           {role.location}
                         </span>
-                        <span className="inline-flex items-center gap-1.5 text-[12.5px] text-white/70">
-                          <Clock size={12} className="text-white/40" aria-hidden />
+                        <span className="inline-flex items-center gap-1.5 text-[13px] text-white/80">
+                          <Clock size={12} className="text-white/70" aria-hidden />
                           {role.type}
                         </span>
-                        <span className="rounded-md border border-white/15 px-2 py-0.5 font-mono text-[10px] tracking-wider text-white/70 uppercase">
+                        <span className="rounded-md border border-white/15 px-2 py-0.5 font-mono text-[12px] tracking-wider text-white/80 uppercase">
                           {role.level}
                         </span>
                       </div>
@@ -1506,7 +1528,7 @@ export default function Home() {
                       <div className="hidden justify-end sm:col-span-1 sm:flex">
                         <ArrowUpRight
                           size={16}
-                          className="text-white/40 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white"
+                          className="text-white/70 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white"
                         />
                       </div>
                     </Link>
@@ -1519,16 +1541,17 @@ export default function Home() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="mt-8 text-[12.5px] leading-relaxed text-white/40"
+                className="mt-8 max-w-3xl text-[14px] leading-relaxed text-white/80"
               >
-                Don&apos;t see a role that fits? We review speculative applications from strong
-                candidates across regulatory, legal, privacy and technology disciplines.{" "}
-                <Link
-                  href="#contact"
-                  className="text-white/70 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white hover:decoration-white/50"
+                Don&apos;t see a role that fits? We welcome speculative applications from strong
+                candidates across regulatory, legal, privacy and technology disciplines. Send your
+                CV and a short introduction to{" "}
+                <a
+                  href={`mailto:${BRAND.emailCareers}?subject=${encodeURIComponent("Speculative application — Dansovia")}`}
+                  className="font-semibold text-white underline decoration-white/50 underline-offset-4 transition-colors hover:decoration-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                 >
-                  Get in touch
-                </Link>
+                  {BRAND.emailCareers}
+                </a>
                 .
               </motion.p>
             </div>
@@ -1537,7 +1560,7 @@ export default function Home() {
 
         {/* ═══════════════ FINAL CTA ═══════════════ */}
         <section className="border-t border-border bg-background py-16 sm:py-20 lg:py-32" id="contact">
-          <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+          <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
             <div className="mx-auto max-w-2xl text-center">
               <motion.h2
                 initial={{ opacity: 0, y: 16 }}
@@ -1555,7 +1578,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="mt-4 text-base text-secondary"
+                className="mt-4 text-base text-[#4B5563]"
               >
                 Start a conversation with Dansovia about your organization&apos;s AI governance and
                 regulatory priorities. Introductory calls are 30 minutes, no obligation.
@@ -1587,16 +1610,16 @@ export default function Home() {
 
       {/* ═══════════════ FOOTER ═══════════════ */}
       <footer className="border-t border-border bg-white">
-        <div className="mx-auto max-w-[1400px] px-6 py-16 lg:px-10">
+        <div className="mx-auto max-w-[1400px] px-4 py-12 sm:px-6 sm:py-16 lg:px-10">
           <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
             <div className="sm:col-span-2 lg:col-span-1">
               <p className="text-[15px] font-semibold tracking-tight text-foreground">
                 {BRAND.name.toUpperCase()}
               </p>
-              <p className="mt-3 max-w-xs text-[13px] leading-relaxed text-secondary">
+              <p className="mt-3 max-w-xs text-[14px] leading-relaxed text-[#4B5563]">
                 {BRAND.tagline}
               </p>
-              <address className="mt-5 not-italic text-[12px] leading-relaxed text-muted">
+              <address className="mt-5 not-italic text-[13px] leading-relaxed text-[#595959]">
                 {BRAND.address.line1}
                 <br />
                 {BRAND.address.city}, {BRAND.address.region} {BRAND.address.postal}
@@ -1620,7 +1643,7 @@ export default function Home() {
                   href={BRAND.linkedin}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="inline-flex items-center gap-1 text-[12px] text-muted transition-colors hover:text-foreground"
+                  className="inline-flex items-center gap-1 text-[13px] text-[#595959] transition-colors hover:text-foreground"
                 >
                   LinkedIn
                   <ArrowUpRight size={12} aria-hidden />
@@ -1629,7 +1652,7 @@ export default function Home() {
             </div>
 
             <div>
-              <p className="text-[12px] font-semibold uppercase tracking-wide text-muted">Firm</p>
+              <p className="text-[13px] font-semibold uppercase tracking-wide text-[#595959]">Firm</p>
               <ul className="mt-4 space-y-2">
                 {[
                   { href: "#services", label: "Services" },
@@ -1641,7 +1664,7 @@ export default function Home() {
                   <li key={l.label}>
                     <Link
                       href={l.href}
-                      className="text-[13px] text-secondary transition-colors hover:text-foreground"
+                      className="text-[14px] text-[#4B5563] transition-colors hover:text-foreground"
                     >
                       {l.label}
                     </Link>
@@ -1651,7 +1674,7 @@ export default function Home() {
             </div>
 
             <div>
-              <p className="text-[12px] font-semibold uppercase tracking-wide text-muted">Legal</p>
+              <p className="text-[13px] font-semibold uppercase tracking-wide text-[#595959]">Legal</p>
               <ul className="mt-4 space-y-2">
                 {[
                   { href: `mailto:${BRAND.emailGeneral}`, label: "Contact" },
@@ -1662,7 +1685,7 @@ export default function Home() {
                   <li key={l.label}>
                     <Link
                       href={l.href}
-                      className="text-[13px] text-secondary transition-colors hover:text-foreground"
+                      className="text-[14px] text-[#4B5563] transition-colors hover:text-foreground"
                     >
                       {l.label}
                     </Link>
@@ -1673,13 +1696,13 @@ export default function Home() {
           </div>
 
           <div className="mt-16 border-t border-border pt-8">
-            <p className="max-w-3xl text-[11px] leading-relaxed text-muted">
+            <p className="max-w-3xl text-[12px] leading-relaxed text-[#595959]">
               {BRAND.legalName} provides AI governance, regulatory risk and compliance advisory
               services. Dansovia is not a law firm and does not provide legal advice or legal
               representation. Where legal opinions or jurisdiction-specific counsel are required,
               we coordinate with appropriately licensed legal professionals.
             </p>
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-[12px] text-muted">
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-[13px] text-[#595959]">
               <p>
                 © {new Date().getFullYear()} {BRAND.legalName}. All rights reserved.
               </p>
