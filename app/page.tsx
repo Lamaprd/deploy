@@ -4,13 +4,21 @@
  * Dansovia — Marketing homepage (app/page.tsx)
  * Single file. Animation via framer-motion; icons via lucide-react.
  *
- * Copy and data below are demonstrative. Replace with approved content
- * before production launch.
+ * Team: 1 founder + 3 senior team = 4 people. Headshot files live in
+ * /public/team/ with the filenames referenced in the TEAM DATA block.
  */
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Menu, X, ArrowRight, ArrowUpRight, MapPin, Clock } from "lucide-react";
+import {
+  Menu,
+  X,
+  ArrowRight,
+  ArrowUpRight,
+  MapPin,
+  Clock,
+  User,
+} from "lucide-react";
 import Link from "next/link";
 
 /* ─────────────────────────────────────────────
@@ -25,8 +33,7 @@ const BRAND = {
     "AI governance and regulatory advisory for organizations deploying AI at scale.",
   emailGeneral: "hello@dansovia.com",
   emailCareers: "careers@dansovia.com",
-  emailPress: "press@dansovia.com",
-  phone: "+1 (213) 555-0142", // 555-01xx is reserved for fiction
+  phone: "+1 (213) 555-0142",
   address: {
     line1: "1200 Wilshire Boulevard, Suite 800",
     city: "Los Angeles",
@@ -45,7 +52,6 @@ const BRAND = {
 
 const navLinks = [
   { href: "#services", label: "Services" },
-  { href: "#industries", label: "Industries" },
   { href: "#regulatory", label: "Regulatory Intelligence" },
   { href: "#insights", label: "Insights" },
   { href: "#about", label: "About" },
@@ -230,21 +236,62 @@ const insights = [
   },
 ];
 
-const experts = [
+/* ─────────────────────────────────────────────
+   TEAM DATA
+   Four people. Headshots live in /public/team/.
+───────────────────────────────────────────── */
+
+type TeamMember = {
+  name: string | null;
+  role: string;
+  area?: string;
+  location?: string;
+  bio?: string;
+  focus: string[];
+  photo: string | null;
+};
+
+const founder: TeamMember = {
+  name: "Jordan Rivera",
+  role: "Founder & Managing Principal",
+  location: "Los Angeles, CA",
+  bio:
+    "Jordan founded Dansovia in 2021 after a decade split between technology regulatory practice and in-house AI policy roles at two Fortune 100 media companies. He advises boards and executive teams on AI governance design, regulatory strategy and enterprise risk, and leads the firm's work across media, financial services and healthcare.",
+  focus: [
+    "AI governance",
+    "Regulatory strategy",
+    "Board advisory",
+  ],
+  photo: "/team/jordan-rivera.jpg",
+};
+
+const seniorTeam: TeamMember[] = [
   {
-    initials: "SD",
-    role: "Senior Advisor, Media & Entertainment",
-    focus: "Generative AI · Copyright · Production workflows",
+    name: "Amara Chen",
+    role: "Head of Regulatory Intelligence",
+    area: "Regulatory Intelligence",
+    bio:
+      "Amara leads jurisdictional monitoring, regulatory analysis and the firm's intelligence product. She tracks EU, US federal and state, and Canadian developments relevant to enterprise AI programs, and previously built the regulatory research function at a global advisory firm.",
+    focus: ["EU AI Act", "US state law", "Monitoring"],
+    photo: "/team/amara-chen.jpg",
   },
   {
-    initials: "JW",
-    role: "Senior Advisor, Financial Services",
-    focus: "Model risk · Third-party risk · SR 11-7 alignment",
+    name: "Marcus Bennett",
+    role: "Head of AI Governance",
+    area: "Governance Advisory",
+    bio:
+      "Marcus leads the design of enterprise AI policies, risk registers and governance operating models. He previously built AI risk programs at two publicly traded technology companies, and advises clients on internal controls, oversight structures and audit readiness.",
+    focus: ["AI policy", "Risk registers", "Internal controls"],
+    photo: "/team/marcus-bennett.jpg",
   },
   {
-    initials: "NT",
-    role: "Senior Advisor, Healthcare AI",
-    focus: "Clinical AI · HIPAA · FDA guidance",
+    name: "Jonathan Wells",
+    role: "Head of Financial Services",
+    area: "Financial Services",
+    bio:
+      "Jonathan leads the firm's work with banks, asset managers and insurers on AI model risk, third-party risk and regulatory expectations. He previously led model risk management at a regional institution and has supported multiple SR 11-7 alignment programs.",
+    focus: ["Model risk", "Third-party risk", "SR 11-7 alignment"],
+    photo: "/team/jonathan-wells.jpg",
   },
 ];
 
@@ -255,13 +302,56 @@ const careerValues = [
 ];
 
 const openRoles = [
-  { title: "Research Associate, Regulatory Intelligence", team: "Regulatory Intelligence", location: "Remote — US",            type: "Full-time", level: "Entry" },
-  { title: "Data Analyst",                                 team: "Regulatory Intelligence", location: "Remote — US",            type: "Full-time", level: "Mid" },
-  { title: "AI Governance Analyst",                        team: "Governance Advisory",     location: "Hybrid — Los Angeles", type: "Full-time", level: "Mid" },
-  { title: "Privacy & AI Compliance Consultant",           team: "Privacy & Data",          location: "Hybrid — Los Angeles", type: "Full-time", level: "Senior" },
-  { title: "AI Vendor Risk Analyst",                       team: "Vendor Due Diligence",    location: "Remote — North America", type: "Full-time", level: "Mid" },
-  { title: "IP & Licensing Analyst",                       team: "Generative AI & IP",      location: "Hybrid — Los Angeles", type: "Full-time", level: "Mid" },
+  { title: "Research Associate, Regulatory Intelligence", team: "Regulatory Intelligence", location: "Remote — US",               type: "Full-time", level: "Entry" },
+  { title: "Data Analyst",                                 team: "Regulatory Intelligence", location: "Remote — US",               type: "Full-time", level: "Mid" },
+  { title: "AI Governance Analyst",                        team: "Governance Advisory",     location: "Hybrid — Los Angeles",    type: "Full-time", level: "Mid" },
+  { title: "Privacy & AI Compliance Consultant",           team: "Privacy & Data",          location: "Hybrid — Los Angeles",    type: "Full-time", level: "Senior" },
+  { title: "AI Vendor Risk Analyst",                       team: "Vendor Due Diligence",    location: "Remote — North America",  type: "Full-time", level: "Mid" },
+  { title: "IP & Licensing Analyst",                       team: "Generative AI & IP",      location: "Hybrid — Los Angeles",    type: "Full-time", level: "Mid" },
 ];
+
+/* ─────────────────────────────────────────────
+   HEADSHOT
+───────────────────────────────────────────── */
+
+function Headshot({
+  src,
+  alt,
+  size = "sm",
+}: {
+  src?: string | null;
+  alt: string;
+  size?: "sm" | "md" | "lg";
+}) {
+  const dims =
+    size === "lg" ? "h-28 w-28" : size === "md" ? "h-14 w-14" : "h-12 w-12";
+  const iconSize = size === "lg" ? 36 : size === "md" ? 22 : 18;
+
+  return (
+    <div
+      className={`${dims} shrink-0 overflow-hidden rounded-full border border-border bg-background`}
+    >
+      {src ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full object-cover"
+        />
+      ) : (
+        <div
+          className="flex h-full w-full items-center justify-center text-muted opacity-50"
+          aria-label={`${alt} — headshot pending`}
+          role="img"
+        >
+          <User size={iconSize} aria-hidden />
+        </div>
+      )}
+    </div>
+  );
+}
 
 /* ─────────────────────────────────────────────
    PAGE
@@ -279,14 +369,51 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    const previousOverflow = document.body.style.overflow;
+    if (mobileOpen) document.body.style.overflow = "hidden";
+
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
     };
   }, [mobileOpen]);
 
   return (
     <>
+      <style jsx global>{`
+        html {
+          scroll-behavior: smooth;
+          scroll-padding-top: 6rem;
+        }
+        section[id],
+        main[id] {
+          scroll-margin-top: 6rem;
+        }
+        a:focus-visible,
+        button:focus-visible {
+          outline: 3px solid #2563eb;
+          outline-offset: 4px;
+          border-radius: 4px;
+        }
+        ::selection {
+          background: #dbeafe;
+          color: #111827;
+        }
+        .regulatory-ticker-track {
+          scrollbar-width: thin;
+          scrollbar-color: #cbd5e1 transparent;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          html {
+            scroll-behavior: auto;
+          }
+        }
+      `}</style>
+      <a
+        href="#main-content"
+        className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-md bg-foreground px-4 py-3 text-sm font-semibold text-white shadow-lg transition-transform focus:translate-y-0 focus-visible:translate-y-0"
+      >
+        Skip to main content
+      </a>
       {/* ═══════════════ NAVIGATION ═══════════════ */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -306,7 +433,7 @@ export default function Home() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-[13px] font-medium text-secondary transition-colors hover:text-foreground"
+                  className="rounded-sm py-2 text-[13px] font-medium text-secondary transition-colors duration-200 hover:text-foreground focus-visible:outline-offset-4"
                 >
                   {link.label}
                 </Link>
@@ -323,7 +450,7 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="flex h-10 w-10 items-center justify-center rounded-md text-foreground lg:hidden"
+                className="flex h-11 w-11 items-center justify-center rounded-lg border border-transparent text-foreground transition-colors hover:bg-black/5 focus-visible:outline-offset-2 lg:hidden"
                 aria-label={mobileOpen ? "Close menu" : "Open menu"}
                 aria-expanded={mobileOpen}
               >
@@ -342,9 +469,9 @@ export default function Home() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-white lg:hidden"
+            className="fixed inset-0 z-40 overflow-y-auto overscroll-contain bg-white lg:hidden"
           >
-            <div className="flex h-full flex-col px-6 pt-20">
+            <div className="flex min-h-full flex-col px-6 pb-8 pt-[calc(5rem+env(safe-area-inset-top))]">
               <nav className="flex flex-col gap-1">
                 {navLinks.map((link, i) => (
                   <motion.div
@@ -356,7 +483,7 @@ export default function Home() {
                     <Link
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
-                      className="block py-3 text-lg font-medium text-foreground"
+                      className="block rounded-lg px-3 py-4 text-lg font-medium text-foreground transition-colors hover:bg-background focus-visible:outline-offset-1"
                     >
                       {link.label}
                     </Link>
@@ -377,7 +504,7 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <main>
+      <main id="main-content">
         {/* ═══════════════ HERO ═══════════════ */}
         <section className="relative min-h-[100svh] overflow-hidden pt-24 lg:pt-32">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
@@ -396,7 +523,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-[2.75rem] font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-[3.5rem] xl:text-[4rem]"
+                  className="text-[clamp(2.5rem,6vw,4rem)] font-semibold leading-[1.02] tracking-[-0.045em] text-foreground sm:text-5xl lg:text-[3.5rem] xl:text-[4rem]"
                 >
                   AI governance
                   <br />
@@ -423,7 +550,7 @@ export default function Home() {
                 >
                   <Link
                     href="#assessment"
-                    className="inline-flex items-center gap-2 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
+                    className="inline-flex items-center gap-2 rounded-md bg-foreground px-5 py-3 text-sm font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
                   >
                     Assess Your AI Risk
                     <ArrowRight size={16} />
@@ -452,7 +579,7 @@ export default function Home() {
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 0.3 }}
-                  className="relative mx-auto aspect-[4/3] max-w-xl overflow-hidden rounded-xl border border-border bg-white shadow-[0_1px_3px_rgba(0,0,0,0.04)] lg:max-w-none"
+                  className="relative mx-auto aspect-[4/3] min-h-[300px] max-w-xl overflow-hidden rounded-xl border border-border bg-white shadow-[0_8px_30px_-20px_rgba(17,17,17,0.22)] sm:min-h-[360px] lg:min-h-[420px] lg:max-w-none"
                 >
                   <div className="flex items-center gap-2 border-b border-border px-4 py-3">
                     <div className="flex gap-1.5">
@@ -553,8 +680,11 @@ export default function Home() {
 
         {/* ═══════════════ REGULATORY TICKER ═══════════════ */}
         <section className="border-y border-border bg-white" aria-label="Regulatory intelligence updates">
-          <div className="mx-auto max-w-[1400px] overflow-hidden">
-            <div className="flex">
+          <div className="mx-auto max-w-[1400px]">
+            <div
+              className="regulatory-ticker-track flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain lg:overflow-visible"
+              aria-label="Scroll regulatory updates horizontally"
+            >
               {tickerItems.map((item, i) => (
                 <motion.div
                   key={item.region}
@@ -562,7 +692,7 @@ export default function Home() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="flex min-w-0 flex-1 items-center gap-4 border-r border-border px-6 py-3 last:border-r-0"
+                  className="flex min-w-[290px] snap-start items-center gap-4 border-r border-border px-5 py-4 last:border-r-0 sm:min-w-[320px] lg:min-w-0 lg:flex-1 lg:px-6 lg:py-3"
                 >
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
@@ -573,7 +703,7 @@ export default function Home() {
                         {item.type}
                       </span>
                     </div>
-                    <p className="mt-0.5 truncate text-[12px] text-secondary">{item.detail}</p>
+                    <p className="mt-1 line-clamp-2 text-[12px] leading-relaxed text-secondary lg:truncate">{item.detail}</p>
                   </div>
                   <Link
                     href="#regulatory"
@@ -592,7 +722,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════ TRUST / POSITIONING ═══════════════ */}
-        <section className="py-24 lg:py-32" id="about">
+        <section className="py-16 sm:py-20 lg:py-32" id="about">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
             <div className="mx-auto max-w-3xl text-center">
               <motion.h2
@@ -632,7 +762,7 @@ export default function Home() {
                 { label: "Jurisdictions Monitored", value: "14" },
                 { label: "Risk Domains",            value: "6" },
                 { label: "Engagements Delivered",   value: "80+" },
-                { label: "Founded",                 value: "2021" },
+                { label: "Founded",                 value: String(BRAND.founded) },
               ].map((stat) => (
                 <div key={stat.label} className="bg-white px-6 py-8 text-center">
                   <p className="font-mono text-2xl font-semibold tracking-tight text-foreground">
@@ -675,46 +805,51 @@ export default function Home() {
               >
                 <div className="grid gap-0 sm:grid-cols-12">
                   <div className="flex items-center justify-center border-b border-border bg-background px-8 py-10 sm:col-span-3 sm:border-b-0 sm:border-r lg:py-14">
-                    <div className="flex h-24 w-24 items-center justify-center rounded-full border border-border bg-white">
-                      <span className="font-mono text-xl font-semibold tracking-tight text-foreground">
-                        EM
-                      </span>
-                    </div>
+                    <Headshot
+                      src={founder.photo}
+                      alt={founder.name ?? "Founder"}
+                      size="lg"
+                    />
                   </div>
 
                   <div className="px-8 py-10 sm:col-span-9 lg:px-10 lg:py-14">
                     <div className="flex flex-wrap items-center gap-3">
                       <span className="rounded-md border border-border bg-background px-2.5 py-1 font-mono text-[10px] font-medium tracking-wider text-foreground uppercase">
-                        Founder &amp; Managing Principal
+                        {founder.role}
                       </span>
-                      <span className="font-mono text-[10px] tracking-wider text-muted uppercase">
-                        Los Angeles, CA
-                      </span>
+                      {founder.location && (
+                        <span className="font-mono text-[10px] tracking-wider text-muted uppercase">
+                          {founder.location}
+                        </span>
+                      )}
                     </div>
 
-                    <h4 className="mt-6 text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-                      Elena Marchetti
-                    </h4>
+                    {founder.name ? (
+                      <h4 className="mt-6 text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+                        {founder.name}
+                      </h4>
+                    ) : (
+                      <div
+                        className="mt-6 h-7 w-48 rounded border border-dashed border-border"
+                        aria-label="Founder name pending"
+                      />
+                    )}
 
-                    <p className="mt-4 max-w-2xl text-[14.5px] leading-relaxed text-secondary">
-                      Elena founded Dansovia in 2021 after a decade split between technology
-                      regulatory practice and in-house AI policy roles at two Fortune 100 media
-                      companies. She advises boards and executive teams on AI governance design,
-                      regulatory strategy and enterprise risk, and leads the firm&apos;s work with
-                      media, financial services and healthcare clients.
-                    </p>
+                    {founder.bio && (
+                      <p className="mt-4 max-w-2xl text-[14.5px] leading-relaxed text-secondary">
+                        {founder.bio}
+                      </p>
+                    )}
 
                     <ul className="mt-8 flex flex-wrap gap-x-3 gap-y-2 border-t border-border pt-6">
-                      {["AI governance", "Regulatory strategy", "Board advisory", "Media & entertainment"].map(
-                        (focus) => (
-                          <li
-                            key={focus}
-                            className="rounded-md border border-border bg-background px-3 py-1.5 font-mono text-[10.5px] tracking-wider text-secondary uppercase"
-                          >
-                            {focus}
-                          </li>
-                        )
-                      )}
+                      {founder.focus.map((focus) => (
+                        <li
+                          key={focus}
+                          className="rounded-md border border-border bg-background px-3 py-1.5 font-mono text-[10.5px] tracking-wider text-secondary uppercase"
+                        >
+                          {focus}
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
@@ -722,32 +857,7 @@ export default function Home() {
 
               {/* Senior team — 3-up grid */}
               <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {[
-                  {
-                    initials: "PR",
-                    role: "Head of Regulatory Intelligence",
-                    area: "Regulatory Intelligence",
-                    body:
-                      "Priya leads jurisdictional monitoring, regulatory analysis and the firm's intelligence product. She tracks EU, US federal and state, and Canadian developments relevant to enterprise AI programs.",
-                    focus: ["EU AI Act", "US state law", "Monitoring"],
-                  },
-                  {
-                    initials: "MC",
-                    role: "Head of AI Governance",
-                    area: "Governance Advisory",
-                    body:
-                      "Marcus leads the design of enterprise AI policies, risk registers and governance operating models. He previously built AI risk programs at two publicly traded technology companies.",
-                    focus: ["AI policy", "Risk registers", "Internal controls"],
-                  },
-                  {
-                    initials: "DO",
-                    role: "Head of Privacy & Data",
-                    area: "Privacy & Data",
-                    body:
-                      "David leads privacy, data protection and cross-border data work related to AI training, inference and vendor arrangements. He advises on DPIAs, CPRA compliance and model data lineage.",
-                    focus: ["Data protection", "DPIA", "CPRA / GDPR"],
-                  },
-                ].map((person, i) => (
+                {seniorTeam.map((person, i) => (
                   <motion.article
                     key={person.role}
                     initial={{ opacity: 0, y: 16 }}
@@ -757,26 +867,38 @@ export default function Home() {
                     className="group flex h-full flex-col rounded-lg border border-border bg-white p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-[0_1px_2px_rgba(17,17,17,0.04),0_14px_36px_-26px_rgba(17,17,17,0.24)] lg:p-7"
                   >
                     <div className="flex items-start justify-between">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background">
-                        <span className="font-mono text-sm font-semibold tracking-tight text-foreground">
-                          {person.initials}
+                      <Headshot
+                        src={person.photo}
+                        alt={person.name ?? person.role}
+                        size="md"
+                      />
+                      {person.area && (
+                        <span className="font-mono text-[10px] tracking-wider text-muted uppercase">
+                          {person.area}
                         </span>
-                      </div>
-                      <span className="font-mono text-[10px] tracking-wider text-muted uppercase">
-                        {person.area}
-                      </span>
+                      )}
                     </div>
 
-                    <p className="mt-6 font-mono text-[10px] tracking-wider text-muted uppercase">
-                      {person.area}
-                    </p>
-                    <h4 className="mt-2 text-[15.5px] font-semibold leading-snug tracking-tight text-foreground">
-                      {person.role}
-                    </h4>
+                    {person.name ? (
+                      <h4 className="mt-6 text-[15.5px] font-semibold leading-snug tracking-tight text-foreground">
+                        {person.name}
+                      </h4>
+                    ) : (
+                      <div
+                        className="mt-6 h-5 w-36 rounded border border-dashed border-border"
+                        aria-label="Name pending"
+                      />
+                    )}
 
-                    <p className="mt-3 flex-1 text-[13.5px] leading-relaxed text-secondary">
-                      {person.body}
+                    <p className="mt-1.5 font-mono text-[10px] tracking-wider text-muted uppercase">
+                      {person.role}
                     </p>
+
+                    {person.bio && (
+                      <p className="mt-3 flex-1 text-[13.5px] leading-relaxed text-secondary">
+                        {person.bio}
+                      </p>
+                    )}
 
                     <ul className="mt-6 flex flex-wrap gap-x-2 gap-y-2 border-t border-border pt-5">
                       {person.focus.map((f) => (
@@ -796,7 +918,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════ SERVICES ═══════════════ */}
-        <section className="border-t border-border bg-white py-24 lg:py-32" id="services">
+        <section className="border-t border-border bg-white py-16 sm:py-20 lg:py-32" id="services">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
             <div className="max-w-2xl">
               <motion.h2
@@ -828,7 +950,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
-                  className="group relative bg-white p-8 transition-colors hover:bg-background"
+                  className="group relative bg-white p-6 transition-colors duration-200 hover:bg-background sm:p-8"
                 >
                   <div className="flex items-start justify-between">
                     <span className="font-mono text-[12px] font-medium tracking-wider text-muted">
@@ -857,7 +979,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════ METHODOLOGY ═══════════════ */}
-        <section className="py-24 lg:py-32">
+        <section className="py-16 sm:py-20 lg:py-32">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
             <div className="max-w-2xl">
               <motion.p
@@ -938,7 +1060,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════ AI RISK SCORECARD ═══════════════ */}
-        <section className="border-t border-border bg-white py-24 lg:py-32" id="assessment">
+        <section className="border-t border-border bg-white py-16 sm:py-20 lg:py-32" id="assessment">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
               <div>
@@ -971,7 +1093,7 @@ export default function Home() {
                 >
                   <Link
                     href="#contact"
-                    className="inline-flex items-center gap-2 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
+                    className="inline-flex items-center gap-2 rounded-md bg-foreground px-5 py-3 text-sm font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
                   >
                     Start AI Risk Assessment
                     <ArrowRight size={16} />
@@ -1038,7 +1160,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════ REGULATORY DASHBOARD ═══════════════ */}
-        <section className="py-24 lg:py-32" id="regulatory">
+        <section className="py-16 sm:py-20 lg:py-32" id="regulatory">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
             <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
               <div className="max-w-xl">
@@ -1115,7 +1237,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════ ENGAGEMENT MODELS ═══════════════ */}
-        <section className="border-t border-border bg-white py-24 lg:py-32">
+        <section className="border-t border-border bg-white py-16 sm:py-20 lg:py-32">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
             <motion.h2
               initial={{ opacity: 0, y: 16 }}
@@ -1165,7 +1287,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════ CASE STUDIES ═══════════════ */}
-        <section className="py-24 lg:py-32">
+        <section className="py-16 sm:py-20 lg:py-32">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
             <motion.p
               initial={{ opacity: 0 }}
@@ -1225,7 +1347,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════ INSIGHTS ═══════════════ */}
-        <section className="border-t border-border bg-white py-24 lg:py-32" id="insights">
+        <section className="border-t border-border bg-white py-16 sm:py-20 lg:py-32" id="insights">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
             <motion.h2
               initial={{ opacity: 0, y: 16 }}
@@ -1272,47 +1394,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ═══════════════ EXPERTS ═══════════════ */}
-        <section className="py-24 lg:py-32">
-          <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-            <motion.h2
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
-            >
-              Expertise across regulation, technology and governance.
-            </motion.h2>
-            <p className="mt-3 text-[13px] text-muted">
-              Our senior advisors bring operating experience from media, financial services and healthcare.
-            </p>
-
-            <div className="mt-12 grid gap-6 sm:grid-cols-3">
-              {experts.map((expert, i) => (
-                <motion.div
-                  key={`${expert.initials}-${i}`}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="rounded-lg border border-border bg-white p-6"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background">
-                    <span className="font-mono text-sm font-semibold text-foreground">
-                      {expert.initials}
-                    </span>
-                  </div>
-                  <p className="mt-4 text-[15px] font-semibold text-foreground">{expert.role}</p>
-                  <p className="mt-1 text-[13px] text-secondary">{expert.focus}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* ═══════════════ CAREERS ═══════════════ */}
-        <section className="bg-[#0D0D0D] py-24 lg:py-32" id="careers">
+        <section className="bg-[#0D0D0D] py-16 sm:py-20 lg:py-32" id="careers">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
             <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
               <motion.div
@@ -1453,7 +1536,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════ FINAL CTA ═══════════════ */}
-        <section className="border-t border-border bg-background py-24 lg:py-32" id="contact">
+        <section className="border-t border-border bg-background py-16 sm:py-20 lg:py-32" id="contact">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
             <div className="mx-auto max-w-2xl text-center">
               <motion.h2
@@ -1532,6 +1615,17 @@ export default function Home() {
                   {BRAND.phone}
                 </a>
               </address>
+              <p className="mt-4">
+                <a
+                  href={BRAND.linkedin}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="inline-flex items-center gap-1 text-[12px] text-muted transition-colors hover:text-foreground"
+                >
+                  LinkedIn
+                  <ArrowUpRight size={12} aria-hidden />
+                </a>
+              </p>
             </div>
 
             <div>
@@ -1539,7 +1633,6 @@ export default function Home() {
               <ul className="mt-4 space-y-2">
                 {[
                   { href: "#services", label: "Services" },
-                  { href: "#industries", label: "Industries" },
                   { href: "#regulatory", label: "Regulatory Intelligence" },
                   { href: "#insights", label: "Insights" },
                   { href: "#about", label: "About" },
